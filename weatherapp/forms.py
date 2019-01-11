@@ -7,4 +7,4 @@ class CityForm(ModelForm):
         fields = ['name']
         widgets = {
             'name': TextInput(attrs={'class' : 'input', 'placeholder' : "City Name" })
-        } #updates the imput class toh have the ccorrect Bulma class adn placeholder
+        } #updates the imput class to have the ccorrect Bulma class adn placeholder
