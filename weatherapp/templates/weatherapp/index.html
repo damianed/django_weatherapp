@@ -12,7 +12,7 @@
   crossorigin=""></script>
   <style media="screen">
     #mapid{
-      height: 300px;
+      height: 500px;
     }
   </style>
   </head>
@@ -26,21 +26,21 @@
     </section>
     <section class="section">
       <div class="container">
-        <div class="column is-offset-4 is-4">
-          <button id="addcity" class="button is-info">
-            Add City
-          </button>
+        <div class="column column is-offset-0 is-12">
+          <div id="mapid" ></div>
+          <div class="control is-expanded">
+            <div class="control">
+              <button id="addcity" class="button is-info is-pulled-right">
+                Got To City
+              </button>
+            </div>
+          </div>
         </div>
           <!-- <form method="post">
             <div class="field has-addons">
-              <div class="control is-expanded">
-              </div>
-              <div class="control">
 
-            </div>
           </form> -->
-           <div id="mapid"></div>
-        </div>
+        <!-- </div> -->
       </div>
     </section>
     <section class="section">
@@ -61,6 +61,7 @@
                       <br>
                       <span class="subtitle">{{ temperature}}° C</span>
                       <br> {{ description}}
+                      <br><a href="{% url 'forecast' %}">Forecast</a>
                     </p>
                   </div>
                 </div>
@@ -75,14 +76,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script>
     <script type="text/javascript">
-    var mymap = L.map('mapid').setView([29.8, -102.4], 13);
+    var mymap = L.map('mapid').setView([{{ lat }}, {{ lon }}], 13);
 
 	  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZGFtaWFuZWQiLCJhIjoiY2pxc2d5MHNyMHY4bDQ4cW85MTVxOG1iZSJ9.kkPD26sCM_E0OUMTm1BxmA', {
   		maxZoom: 18,
   		id: 'mapbox.streets'
 	  }).addTo(mymap);
 
-    let marker = L.marker([51.5, -0.09]).addTo(mymap);
+    let marker = L.marker([{{ lat }}, {{ lon }}]).addTo(mymap);
 
     function onMapClick(e) {
         // popup
@@ -99,32 +100,14 @@
       $("#addcity").click(function(){
         let lat = marker.getLatLng().lat;
         let lon = marker.getLatLng().lng;
-        console.log(lat);
-          // $.ajax({
-          //     type: "POST",
-          //     dataType: "json",
-          //     data: {
-          //         csrfmiddlewaretoken: '{{ csrf_token }}',
-          //         latlng: latlng,
-          //         },
-          //     success : function(json) {
-          //         console.log("Successfully sent the URL to Django");
-          //     },
-          //     error : function(xhr,errmsg,err) {
-          //         alert("Could not send URL to Django. Error: " + xhr.status + ": " + xhr.responseText);
-          //     }
-          // });
-          let xhttp = new XMLHttpRequest()
-          xhttp.open("POST", "", true);
-          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          xhttp.send("csrfmiddlewaretoken={{ csrf_token }}&lat="+lat);
-          let form = $('<form method="post">' +
-              '<input type="text" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />' +
-              '<input type="text" name="lat" value="' + lat + '" />' +
-              '<input type="text" name="lon" value="' + lon + '" />' +
-            '</form>');
-            $('body').append(form);
-            form.submit();
+
+        let form = $('<form method="post">' +
+            '<input type="text" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />' +
+            '<input type="text" name="lat" value="' + lat + '" />' +
+            '<input type="text" name="lon" value="' + lon + '" />' +
+          '</form>');
+          $('body').append(form);
+          form.submit();
       });
     });
     </script>

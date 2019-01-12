@@ -36,7 +36,12 @@ def index(request):
         'city': city_weather['name'],
         'temperature': city_weather['main']['temp'],
         'description': city_weather['weather'][0]['description'],
+        'lat': city_weather['coord']['lat'],
+        'lon': city_weather['coord']['lon'],
         'icon': city_weather['weather'][0]['icon'],
     }
     context = weather
     return render(request, 'weatherapp/index.html', context) #returns the index.html template
+
+def forecast(request):
+    return render(request, 'weatherapp/forecast.html')
