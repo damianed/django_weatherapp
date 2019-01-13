@@ -23,6 +23,10 @@ crossorigin=""></script>
       <div class="container">
         <div class="columns">
           <div class="column is-offset-4 is-4">
+            {% for day in weather_forecast %}
+            <script type="text/javascript">
+              console.log("{{ day }}");
+            </script>
             <div class="box">
               <article class="media">
                 <div class="media-left">
@@ -37,12 +41,12 @@ crossorigin=""></script>
                       <br>
                       <span class="subtitle">{{ temperature}}° C</span>
                       <br> {{ description }}
-                      <br><a href="#">Forecast</a>
                     </p>
                   </div>
                 </div>
               </article>
             </div>
+            {% endfor %}
           </div>
         </div>
       </div>

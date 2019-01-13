@@ -44,4 +44,22 @@ def index(request):
     return render(request, 'weatherapp/index.html', context) #returns the index.html template
 
 def forecast(request):
-    return render(request, 'weatherapp/forecast.html')
+    url = "https://samples.openweathermap.org/data/2.5/forecast/daily?lat={}&lon={}&cnt=5&appid=a37ca4bee258beb72cf54b2b5cf190f3"
+    city_forecast = requests.get(url.format(request.GET['lat'], request.GET['lon'])).json()
+
+    weather_forecast = []
+    for weather in city_forecast['list']:
+        day = {
+            'dt': weather['dt'],
+            'description': weather['weather'][0]['description'],
+            'icon': weather['weather'][0]['icon'],
+            'main': weather['weather'][0]['main'],
+            # 'temperature': {
+            #     'min': weather['temp']['min'],
+            #     'max': weather['temp']['max'],
+            # },
+        }
+        weather_forecast.append(day)
+
+    context = {'weather_forecast': weather_forecast}
+    return render(request, 'weatherapp/forecast.html', context)

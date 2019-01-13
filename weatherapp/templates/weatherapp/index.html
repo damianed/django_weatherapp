@@ -61,7 +61,7 @@
                       <br>
                       <span class="subtitle">{{ temperature}}° C</span>
                       <br> {{ description}}
-                      <br><a href="{% url 'forecast' %}">Forecast</a>
+                      <br><a href="{% url 'forecast' %}?lat={{ lat }}&lon={{ lon }}">Forecast</a>
                     </p>
                   </div>
                 </div>
