@@ -15,39 +15,42 @@ crossorigin=""></script>
     <section class="hero is-primary">
       <div class="hero-body">
         <h1 class="title">
-          What will be the weather like
+          What will the weather be like in {{ weather_forecast.0.city }}
         </h1>
       </div>
     </section>
     <section class="section">
       <div class="container">
-        <div class="columns">
-          <div class="column is-offset-4 is-4">
-            {% for day in weather_forecast %}
-            <script type="text/javascript">
-              console.log("{{ day }}");
-            </script>
-            <div class="box">
-              <article class="media">
-                <div class="media-left">
-                  <figure class="image is-50x50">
-                    <img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="Image">
-                  </figure>
+        <div class="columns is-multiline">
+          {% for day in weather_forecast %}
+            {% if forloop.counter0 != 0 %}
+              <div class="column is-4">
+                <div class="box">
+                  <article class="media">
+                    <div class="media-left">
+                      <figure class="image is-50x50">
+                        <img src="http://openweathermap.org/img/w/{{ day.icon }}.png" alt="Image">
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <div class="content">
+                        <p>
+                          <span class="title">{{ day.dt }}</span>
+                          <br>
+                          <span class="subtitle"><b>Temperature</b></span>
+                          <br>
+                          Max: {{ day.temperature.max }}° C
+                          <br>
+                          Min: {{ day.temperature.min }}° C
+                          <br> {{ day.description }}
+                        </p>
+                      </div>
+                    </div>
+                  </article>
                 </div>
-                <div class="media-content">
-                  <div class="content">
-                    <p>
-                      <span class="title">{{ city }}</span>
-                      <br>
-                      <span class="subtitle">{{ temperature}}° C</span>
-                      <br> {{ description }}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </div>
-            {% endfor %}
-          </div>
+              </div>
+          {% endif %}
+        {% endfor %}
         </div>
       </div>
     </section>
