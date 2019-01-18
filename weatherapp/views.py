@@ -20,12 +20,13 @@ def index(request):
         ip = (request.META.get('REMOTE_ADDR'))
         g = GeoIP2()
 
-        try:
-            lat_lon = g.lat_lon(ip)
-            city_weather = requests.get(url.format(lat_lon[0], lat_lon[1])).json()
-        except:
-            url= 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=a37ca4bee258beb72cf54b2b5cf190f3'
-            city_weather = requests.get(url.format(city)).json()
+        # try:
+        print(ip)
+        lat_lon = g.lat_lon(ip)
+        city_weather = requests.get(url.format(lat_lon[0], lat_lon[1])).json()
+        # except:
+        #     url= 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=a37ca4bee258beb72cf54b2b5cf190f3'
+        #     city_weather = requests.get(url.format(city)).json()
 
     weather_data = []
 
