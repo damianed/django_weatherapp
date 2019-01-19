@@ -17,7 +17,13 @@ def index(request):
         print(request.POST.items());
         city_weather = requests.get(url.format(request.POST["lat"], request.POST["lon"])).json()
     else:
-        ip = (request.META.get('REMOTE_ADDR'))
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        ip = None
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+
         g = GeoIP2()
 
         try:
