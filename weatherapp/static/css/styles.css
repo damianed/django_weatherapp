@@ -1,0 +1,9 @@
+footer, .footer{
+  height: 50px;
+  background:#00443a;
+  text-align: right;
+}
+
+footer a{
+  margin-left: 5px;
+}
