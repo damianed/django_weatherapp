@@ -4,10 +4,9 @@
     <meta charset="utf-8">
     <title>What's the weather like</title>
       {% load static %}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
-   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-   crossorigin=""/>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
    <link rel="stylesheet" href="{% static "css/styles.css" %}">
    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
@@ -48,7 +47,7 @@
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column is-offset-4 is-4">
+          <div class="column is-offset-3 is-6">
             <div class="box">
               <article class="media">
                 <div class="media-left">
@@ -63,10 +62,10 @@
                       <br>
                       <span class="subtitle">{{ temperature}}° C</span>
                       <br> {{ description}}
-                      <br><a href="{% url 'forecast' %}?lat={{ lat }}&lon={{ lon }}">Forecast</a>
                     </p>
                   </div>
                 </div>
+                <br><a href="{% url 'forecast' %}?lat={{ lat }}&lon={{ lon }}">Forecast</a>
               </article>
             </div>
           </div>
@@ -74,8 +73,8 @@
       </div>
     </section>
     <footer class="footer">
-      <a href="mailto:damian050697@gmail.com"><img src="{% static "img/gmail.png" %}" alt="gmail.com"></a>
-      <a href="https://github.com/damianed/django_weatherapp"><img src="{% static "img/GitHubMarkLight64px.png" %}" alt="Github Repository"></a>
+      <a href="mailto:damian050697@gmail.com"><i class="fab fa-github"></i></a>
+      <a href="https://github.com/damianed/django_weatherapp"><i class="fas fa-envelope"></i></a>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script>
